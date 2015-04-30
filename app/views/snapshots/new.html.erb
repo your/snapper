@@ -1,0 +1,19 @@
+<h1>Add a new Snapshot</h1>
+<%= form_for @snapshot do |form| %>
+ 
+  <p>
+    <%= form.label :url, "Your URL:" %>
+    <%= form.text_field :url %>
+  </p>
+ 
+  <% if @snapshot.errors[:url].any? %>
+    <p class='error-messages'>
+      The given url <%= @snapshot.errors[:url].to_sentence %>.
+    </p>
+  <% end %>
+ 
+  <p class='buttons'>
+    <%= form.submit "Snapshot my URL" %>
+  </p>
+ 
+<% end %>

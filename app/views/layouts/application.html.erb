@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pdfsnapshot</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	
+	<% if flash[:snapshot_id].present? %>
+	  <p class='snapshot-link'>
+	    The snapshot is available <%= link_to 'here',
+	snapshot_url(flash[:snapshot_id]) %>.
+	    (Right click and copy link to share it).
+	  </p>
+	<% end %>
+
+<%= yield %>
+
+</body>
+</html>
