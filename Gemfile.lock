@@ -1,3 +1,8 @@
+PATH
+  remote: omniauth-coursera/
+  specs:
+    omniauth-coursera (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -242,6 +247,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
+  omniauth-coursera!
   omniauth-oauth2
   pg
   rails (= 4.2.0)

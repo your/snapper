@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'omniauth-oauth2'
 
-#gem 'omniauth-coursera'
+gem 'omniauth-coursera', :path => "omniauth-coursera/"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
