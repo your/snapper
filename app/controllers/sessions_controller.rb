@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   end
   
   def check_cookies
-    cookies[:_uid].nil? && cookies[:_uname].nil?
+    !cookies[:_uid].nil? && !cookies[:_uname].nil?
   end
   
   def validate_enrollment(enrollments)
