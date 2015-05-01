@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     validated = false
     enrollments.each do |e|
       course_id = e["courseId"]
-      if course_id == COURSE_ID
+      if course_id == Pdfsnapshot::COURSE_ID
         validated = true
         break
       end
