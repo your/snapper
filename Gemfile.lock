@@ -1,7 +1,7 @@
 PATH
   remote: omniauth-coursera/
   specs:
-    omniauth-coursera (0.1.0)
+    omniauth-coursera (0.0.1)
 
 GEM
   remote: https://rubygems.org/

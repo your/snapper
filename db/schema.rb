@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150430001034) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "coursera_id", null: false
+    t.string   "uid",         null: false
     t.string   "name",        null: false
     t.string   "locale"
     t.string   "timezone"
