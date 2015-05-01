@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
   def validate_enrollment(enrollments)
     validated = false
     enrollments.each do |e|
+      p e
       course_id = e["courseId"]
       if course_id == Pdfsnapshot::COURSE_ID
         validated = true

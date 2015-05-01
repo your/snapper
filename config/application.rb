@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Pdfsnapshot
-  COURSE_ID = 216 # Design: Creation of Artifacts in Society
+  COURSE_ID = 126 # Design: Creation of Artifacts in Society
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
