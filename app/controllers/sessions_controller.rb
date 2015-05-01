@@ -14,12 +14,11 @@ class SessionsController < ApplicationController
       user.authorizations.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
       user.save
  
-      render :text => "Hi #{user.name}! You've signed up. Are you enrolled? #{validate_enrollment}"
+      render :text => "Hi #{user.name}! You've signed up. Are you enrolled? #{}"
     end
   end
   
   def validate_enrollment
-    COURSE_ID = 216 # Design: Creation of Artifacts in Society
     validated = false
     enrollments = auth_hash["info"]["enrollments"]
     enrollments.each do |e|
