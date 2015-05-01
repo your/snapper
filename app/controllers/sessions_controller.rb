@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
  
     @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
     if @authorization
-      render :text => "Welcome back #{@authorization.user.name}! You have already signed up. Are you enrolled? #{validate_enrollment}"
+      render :text => "Welcome back #{@authorization.user.name}! You have already signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
     else
       user = User.new :uid => auth_hash["uid"],
                       :name => auth_hash["info"]["name"],
@@ -14,13 +14,12 @@ class SessionsController < ApplicationController
       user.authorizations.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
       user.save
  
-      render :text => "Hi #{user.name}! You've signed up. Are you enrolled? #{validate_enrollment}"
+      render :text => "Hi #{user.name}! You've signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
     end
   end
   
-  def validate_enrollment
+  def validate_enrollment(enrollments)
     validated = false
-    enrollments = auth_hash["info"]["enrollments"]
     enrollments.each do |e|
       course_id = e["courseId"]
       if course_id == COURSE_ID
