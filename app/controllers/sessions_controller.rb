@@ -10,12 +10,12 @@ class SessionsController < ApplicationController
                       :name => auth_hash["info"]["name"],
                       :locale => auth_hash["info"]["locale"],
                       :timezone => auth_hash["info"]["timezone"]                      
-                      
+
+      cookies[:_uid] = { :value => auth_hash["uid"], :expires => Time.now + 2.month}
+      cookies[:_uname] = { :value => auth_hash["info"]["name"].to_s.split(' ')[0], :expires => Time.now + 2.month}
+                             
       user.authorizations.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
       user.save
-      
-      cookies[:_uid] = { :value => auth_hash["uid"], :expires => Time.now + 2.month}
-      cookies[:_uname] = { :value => auth_hash["name"].split(' ')[0], :expires => Time.now + 2.month}
       
  
       render :text => "Hi #{user.name}! You've signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
