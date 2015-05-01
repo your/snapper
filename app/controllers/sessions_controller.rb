@@ -1,8 +1,11 @@
 class SessionsController < ApplicationController
+  before_action :check_cookie, only: [:create]
+  @cookie = nil
+  
   def create
     auth_hash = request.env['omniauth.auth']
     
-    auth_uid = check_cookie.nil? ? auth_hash["uid"] : check_cookie
+    auth_uid = @cookie.nil? ? auth_hash["uid"] : @cookie
  
     @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_uid)
     if @authorization
@@ -16,14 +19,14 @@ class SessionsController < ApplicationController
       user.authorizations.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
       user.save
       
-      cookies[:auth_uid] = { :value => auth_hash["uid"], :expires => Time.now + 1.hour}
+      cookies[:_auth_uid] = { :value => auth_hash["uid"], :expires => Time.now + 1.hour }
  
       render :text => "Hi #{user.name}! You've signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
     end
   end
   
   def check_cookie
-    auth_uid = cookies[:auth_uid]
+    @cookie = cookies[:_auth_uid]
   end
   
   def validate_enrollment(enrollments)
