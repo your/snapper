@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
   
   def check_cookie
     @cookie = cookies[:_auth_uid]
+    p @cookie
   end
   
   def validate_enrollment(enrollments)
