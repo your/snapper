@@ -127,9 +127,6 @@ GEM
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
-    omniauth-coursera (0.0.1)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.1)
     omniauth-oauth2 (1.3.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
@@ -245,8 +242,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
-  omniauth
-  omniauth-coursera
+  omniauth-oauth2
   pg
   rails (= 4.2.0)
   rspec-rails
