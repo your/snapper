@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  @url = nil
   def new
     @authorization = Authorization.new
     @url = params[:url]
