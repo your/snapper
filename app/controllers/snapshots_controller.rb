@@ -33,7 +33,7 @@ class SnapshotsController < ApplicationController
       end
       
     else
-      render :text => "no/expired cookie"
+      #render :text => "no/expired cookie"
       redirect_to :controller => 'sessions', :action => 'create', :provider => 'coursera'
     end
     
