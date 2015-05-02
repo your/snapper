@@ -1,6 +1,7 @@
 class SnapshotsController < ApplicationController
   def new
     url = session[:_url]
+    @snapshot = Snapshot.new
     if !url.nil?
       @snapshot = Snapshot.new(url)
       if check_cookies
