@@ -1,38 +1,18 @@
 class SnapshotsController < ApplicationController
+  
+  def get_url
+    session_url = session[:_url]
+    if session_url.nil?
+      params = snapshot_params
+    else
+      params = { :url => session_url }
+  end
+  
   def new
     @snapshot = Snapshot.new
     session_url = session[:_url]
     if !session_url.nil?
-      @snapshot.url = session_url
-      session[:_url] = nil # destroy session url
-      if check_cookies
-      
-        @authorization = Authorization.find_by_provider_and_uid("coursera", cookies[:_uid])
-      
-        if @authorization
-          @snapshot.user_id = @authorization.user_id
-        
-          if @snapshot.save
-            #
-            @snapshot.generated_hash = generate_hash(@snapshot.id)
-            @snapshot.save
-            #
-            flash[:snapshot_id] = @snapshot.id
-            redirect_to new_snapshot_url
-          else
-            render :new
-          end
-        
-        else
-          render :text => "wrong/expired auth"
-        end
-      
-      else
-        #render :text => "no/expired cookie"
-        session[:_url] = @snapshot.url
-        redirect_to :controller => 'sessions', :action => 'new'
-      end
-      
+      create
     end
   end
   
@@ -41,7 +21,8 @@ class SnapshotsController < ApplicationController
   end
   
   def create
-    @snapshot = Snapshot.new(snapshot_params)
+    @snapshot = Snapshot.new(get_url)
+    session[:_url] = nil # destroy immediately session url!
     
     if check_cookies
       
