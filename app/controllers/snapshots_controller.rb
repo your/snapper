@@ -4,7 +4,7 @@ class SnapshotsController < ApplicationController
     session_url = session[:_url]
     if !session_url.nil?
       @snapshot.url = session_url
-      session[:_url].destroy
+      session[:_url] = nil # destroy session url
       if check_cookies
       
         @authorization = Authorization.find_by_provider_and_uid("coursera", cookies[:_uid])
