@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   #get '/auth/:provider/callback', to: 'sessions#create'
   get   '/login', :to => 'sessions#new', :as => :login
-  get '/auth/:provider/callback', :to => 'sessions#create' do
+  get '/auth/:provider/callback?:url', :to => 'sessions#create' do
     @url = params[:url]
     erb :url
   end
