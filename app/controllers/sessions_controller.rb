@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
      
     @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
     if @authorization && check_cookies
-      render :text => "(#{@url}) Welcome back #{@authorization.user.name}! You have already signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
+      #render :text => "(#{@url}) Welcome back #{@authorization.user.name}! You have already signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
+      redirect_to :controller => 'snapshots', :action => 'create', :url => @url
     else
       user = User.new :uid => auth_hash["uid"],
                       :name => auth_hash["info"]["name"],
@@ -25,7 +26,8 @@ class SessionsController < ApplicationController
       user.save
       
  
-      render :text => "(#{@url}) Hi #{user.name}! You've signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
+      #render :text => "(#{@url}) Hi #{user.name}! You've signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
+      redirect_to :controller => 'snapshots', :action => 'create', :url => @url
     end
   end
   
