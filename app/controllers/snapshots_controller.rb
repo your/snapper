@@ -34,7 +34,7 @@ class SnapshotsController < ApplicationController
       
     else
       #render :text => "no/expired cookie"
-      cookies[:_url] = @snapshot.url
+      session[:_url] = @snapshot.url
       redirect_to :controller => 'sessions', :action => 'new'
     end
     

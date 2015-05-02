@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    @url =  cookies[:_url]
+    @url =  session[:_url]
     
     auth_hash = request.env['omniauth.auth']
      
