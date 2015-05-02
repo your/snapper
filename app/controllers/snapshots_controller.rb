@@ -4,7 +4,7 @@ class SnapshotsController < ApplicationController
     @snapshot = Snapshot.new
     if !url.nil?
       @snapshot = Snapshot.new(:url => url)
-      if check_cookies
+      #if check_cookies
       
         @authorization = Authorization.find_by_provider_and_uid("coursera", cookies[:_uid])
       
@@ -26,11 +26,11 @@ class SnapshotsController < ApplicationController
           render :text => "wrong/expired auth"
         end
       
-      else
+        #else
         #render :text => "no/expired cookie"
-        session[:_url] = @snapshot.url
-        redirect_to :controller => 'sessions', :action => 'new'
-      end
+        #session[:_url] = @snapshot.url
+        #redirect_to :controller => 'sessions', :action => 'new'
+        #end
     end
   end
   
