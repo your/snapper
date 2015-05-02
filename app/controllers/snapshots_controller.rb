@@ -3,8 +3,18 @@ class SnapshotsController < ApplicationController
     @snapshot = Snapshot.new
   end
   
+  def check_cookies
+    !cookies[:_uid].nil? && !cookies[:_uname].nil?
+  end
+  
   def create
     @snapshot = Snapshot.new(snapshot_params)
+    
+    if check_cookies
+      @authorization = Authorization.find_by_provider_and_uid("coursera", cookies[:_uid])
+      if @authorization
+        
+      
     if @snapshot.save
       #
       @snapshot.generated_hash = generate_hash(@snapshot.id)
@@ -15,6 +25,11 @@ class SnapshotsController < ApplicationController
     else
       render :new
     end
+    
+  end
+else
+  render :text => "lol"
+end
   end
   
   def generate_hash(url)
