@@ -21,6 +21,11 @@ class SnapshotsController < ApplicationController
     !cookies[:_uid].nil? && !cookies[:_uname].nil?
   end
   
+  def status
+     @snapshot = Snapshot.find(params[:snapshot_id])
+     render json: { id: @snapshot.id, ready: @snapshot.ready }
+   end
+  
   def create
     @snapshot = Snapshot.new(get_url)
     session[:_url] = nil # destroy immediately session url!
