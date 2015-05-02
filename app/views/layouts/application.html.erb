@@ -11,7 +11,8 @@
 	
 	<% if flash[:snapshot_id].present? %>
 	<div data-status="<%= snapshots_status_path(flash[:snapshot_id]) %>">
-	  <p class='snapshot-processing'>Processing...</p>
+	  <p class='snapshot-processing'>Converting...</p>
+	  <p class='snapshot-error'>En error occured!</p>
   	  <p class='snapshot-link'>
   	    The snapshot is available: <%= link_to 'here', snapshot_url(flash[:snapshot_id]) %>.
 	  (Right click and copy link to share it).

@@ -12,6 +12,6 @@ class Snapshot < ActiveRecord::Base
   #def success(job)
   #end
   
-  handle_asynchronously :snap
+  handle_asynchronously :snap#, run_at => Proc.new { 5.minutes.from_now }
   
 end
