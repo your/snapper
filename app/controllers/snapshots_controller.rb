@@ -13,6 +13,7 @@ class SnapshotsController < ApplicationController
     if check_cookies
       @authorization = Authorization.find_by_provider_and_uid("coursera", cookies[:_uid])
       if @authorization
+        @snapshot.user_id = @authorization.user_id
         
       
     if @snapshot.save
