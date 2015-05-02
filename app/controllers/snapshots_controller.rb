@@ -4,6 +4,7 @@ class SnapshotsController < ApplicationController
     session_url = session[:_url]
     if !session_url.nil?
       p session_url
+    end
   end
   
   def check_cookies
