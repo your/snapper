@@ -1,8 +1,8 @@
 class SnapshotsController < ApplicationController
   def new
     url = session[:_url]
-    @snapshot = Snapshot.new
     if !url.nil?
+      @snapshot = Snapshot.new(url)
       if check_cookies
       
         @authorization = Authorization.find_by_provider_and_uid("coursera", cookies[:_uid])
