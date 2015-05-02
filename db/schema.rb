@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150502161500) do
   create_table "snapshots", force: :cascade do |t|
     t.integer  "user_id",        null: false
     t.string   "url",            null: false
+    t.integer  "ready"
     t.string   "generated_hash"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false

@@ -31,13 +31,18 @@ class SnapshotsController < ApplicationController
       
       if @authorization
         @snapshot.user_id = @authorization.user_id
+        @snapshot.ready = 0 # not done yet
         
         if @snapshot.save
           #
+          @snapshot.snap # <-- asynchronous call handled by delayed_job
+          p "COME E' ANDATA?"
+          p @snapshot.ready
           @snapshot.generated_hash = generate_hash(@snapshot.id)
           @snapshot.save
           #
           flash[:snapshot_id] = @snapshot.id
+          
           redirect_to new_snapshot_url
         else
           render :new
