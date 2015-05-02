@@ -6,6 +6,7 @@ class SnapshotsController < ApplicationController
       params = snapshot_params
     else
       params = { :url => session_url }
+    end
   end
   
   def new
