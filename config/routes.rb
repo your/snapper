@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   
   root :to => redirect('/snapshots/new')
-  
+    
   #get '/auth/:provider/callback', to: 'sessions#create'
   get   '/login', :to => 'sessions#new', :as => :login
   get '/auth/:provider/callback', :to => 'sessions#create'
