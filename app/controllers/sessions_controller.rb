@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
   
   def create
+    # TODO: add a @url.nil? check - the user could open auth without looking for a snapshot?
     @url =  session[:_url]
     
     auth_hash = request.env['omniauth.auth']
@@ -25,9 +26,6 @@ class SessionsController < ApplicationController
       
  
       render :text => "(#{@url}) Hi #{user.name}! You've signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
-    end
-    if !@url.nil?
-      render :text => "Good! You can now snapshot #{@url}"
     end
   end
   
