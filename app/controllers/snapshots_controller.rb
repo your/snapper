@@ -3,7 +3,7 @@ class SnapshotsController < ApplicationController
     url = session[:_url]
     @snapshot = Snapshot.new
     if !url.nil?
-      @snapshot = Snapshot.new(url)
+      @snapshot = Snapshot.new(:url => url)
       if check_cookies
       
         @authorization = Authorization.find_by_provider_and_uid("coursera", cookies[:_uid])
