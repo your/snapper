@@ -2,9 +2,13 @@ class SessionsController < ApplicationController
   def new
     @authorization = Authorization.new
     @url = params[:url]
+    p 'lol1'
+    p @url
   end
   
   def create
+    p 'lol2'
+    p @url
     auth_hash = request.env['omniauth.auth']
      
     @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
