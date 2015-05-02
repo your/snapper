@@ -14,10 +14,13 @@ class SessionsController < ApplicationController
       #render :text => "(#{@url}) Welcome back #{@authorization.user.name}! You have already signed up. Are you enrolled? #{validate_enrollment(auth_hash["info"]["enrollments"])}"
       redirect_to :controller => 'snapshots', :action => 'new'
     else
-      user = User.new :uid => auth_hash["uid"],
-                      :name => auth_hash["info"]["name"],
-                      :locale => auth_hash["info"]["locale"],
-                      :timezone => auth_hash["info"]["timezone"]                      
+      user = User.find_by_uid(auth_hash["uid"])
+      if !user
+        user = User.new :uid => auth_hash["uid"],
+                        :name => auth_hash["info"]["name"],
+                        :locale => auth_hash["info"]["locale"],
+                        :timezone => auth_hash["info"]["timezone"]    
+      end                  
 
       cookies[:_uid] = { :value => auth_hash["uid"], :expires => Time.now + 2.month}
       cookies[:_uname] = { :value => auth_hash["info"]["name"].to_s.split(' ')[0], :expires => Time.now + 2.month}
