@@ -22,8 +22,8 @@ class SnapshotsController < ApplicationController
   end
   
   def status
-     @snapshot = Snapshot.find(params[:snapshot_id])
-     render json: { id: @snapshot.id, ready: @snapshot.ready }
+     @snapshot = Snapshot.find_by_generated_hash(params[:snapshot_id])
+     render json: { id: @snapshot.generated_hash, ready: @snapshot.ready }
    end
   
   def create
@@ -41,12 +41,10 @@ class SnapshotsController < ApplicationController
         if @snapshot.save
           #
           @snapshot.snap # <-- asynchronous call handled by delayed_job
-          p "COME E' ANDATA?"
-          p @snapshot.ready
           @snapshot.generated_hash = generate_hash(@snapshot.id)
           @snapshot.save
           #
-          flash[:snapshot_id] = @snapshot.id
+          flash[:snapshot_id] = @snapshot.generated_hash
           
           redirect_to new_snapshot_url
         else
@@ -70,7 +68,7 @@ class SnapshotsController < ApplicationController
   end
   
   def show
-    @snapshot = Snapshot.find(params[:id])
+    @snapshot = Snapshot.find_by_generated_hash(params[:id])
     redirect_to @snapshot.url
   end
   
