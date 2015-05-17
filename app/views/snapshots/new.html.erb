@@ -1,20 +1,73 @@
+		  
+      <% if flash[:snapshot_id].present? %>
+        <!-- Box -->
+        <div class="box">
+          <!-- data-status -->
+          <div data-status="<%= snapshots_status_path(flash[:snapshot_id]) %>">
+            <div class="usermsg" id="snapshot-processing">
+              <h1>Hold on, <%= @username %>..</h1>
+              <h2>We are taking the snapshot..</h2>
+              <div id="loading"><img src="http://sharped.net/img/loading.gif" alt="loading.."></div>
+            </div>
+            <div class="usermsg" id="snapshot-done">
+              <h1>Good news <%= @username %>!</h1>
+              <h2>Your snapshot is available: <%= link_to 'here', snapshot_url(flash[:snapshot_id]) %>.</h2>
+            </div>
+            <!--<p class='snapshot-processing'>Converting...</p>-->
+            <div class="generic-error" id="snapshot-error">
+              <span id="error-highlight">ERROR: Snapshot failed.</span>
+            </div>
+            <!--<p class='snapshot-link'>The snapshot is available: <%= link_to 'here', snapshot_url(flash[:snapshot_id]) %>.
+			(Right click and copy link to share it).</p>-->
+          </div>
+		  <!-- //data-status -->
+        </div>
+        <!-- //Box -->
+      <% end %>
+		 
+      <% if !flash[:snapshot_id].present? %>
+      <!-- Box -->
+        <div class="box">
+          <div class="usermsg">
+            <h1>Hello <%= @username %>!</h1>
+            <h2>Type/paste the project website URL:</h2>
+          </div>
+          <div class="inputarea">
+            <%= form_for @snapshot do |form| %>
+              <!--<input type="text" class="input-text" placeholder="http://mydesignpot.webnode.com/" autofocus>-->
+              <%= form.text_field :url, :class => 'form-input', :placeholder => 'http://mydesignpot.webnode.com/', :autofocus => true %>
+              <!--<button type="button">Get PDF Snapshot!</button>-->
+              <%= form.submit "Get PDF Snapshot!", :class => 'form-button' %>
+              <% end %>
+          </div>
+          <% if @snapshot.errors[:url].any? %>
+            <div class="generic-error">
+              <span id="error-highlight">ERROR: URL <%= @snapshot.errors[:url].to_sentence %>.</span>
+            </div>
+          <% end %>
+        </div>
+        <!-- //Box -->
+      <% end %>
+
+	
+<!-- Old
 <h1>Add a new Snapshot</h1>
-<%= csrf_meta_tags %>
 <%= form_for @snapshot do |form| %>
  
-  <p>
-    <%= form.label :url, "Your URL:" %>
-    <%= form.text_field :url %>
-  </p>
+<p>
+<%= form.label :url, "Your URL:" %>
+<%= form.text_field :url %>
+</p>
  
-  <% if @snapshot.errors[:url].any? %>
-    <p class='error-messages'>
-      The given url <%= @snapshot.errors[:url].to_sentence %>.
-    </p>
-  <% end %>
+<% if @snapshot.errors[:url].any? %>
+<p class='error-messages'>
+The given url <%= @snapshot.errors[:url].to_sentence %>.
+</p>
+<% end %>
  
-  <p class='buttons'>
-    <%= form.submit "Snapshot my URL" %>
-  </p>
+<p class='buttons'>
+<%= form.submit "Snapshot my URL" %>
+</p>
  
 <% end %>
+//Old -->

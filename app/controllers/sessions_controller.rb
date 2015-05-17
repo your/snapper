@@ -1,6 +1,16 @@
 class SessionsController < ApplicationController
   def new
     @authorization = Authorization.new
+    @username = user_name
+  end
+  
+  def user_name
+    username = cookies[:_uname]
+    if !username.nil?
+      username.to_s.split(" ")[0]
+    else
+      "Guest"
+    end
   end
   
   def create

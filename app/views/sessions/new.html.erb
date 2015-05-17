@@ -1,2 +1,17 @@
-<h1>You need to Login through Coursera</h1>
-<%= link_to 'here', 'auth/coursera' %>.
+      <!-- Box -->
+      <div class="box">
+        <div class="usermsg" id="snapshot-processing">
+          <h1><%= @username %>, we need to verify your identity.</h1>
+		  <h2> What does it mean?</h2>
+		 
+		  <br>
+		  <p>To use this tool, you need to be enrolled to the current session of the course.</p>
+		  <b><p>Thus, we need you to authorize this app to be able access your Coursera basic information,
+			  <br>such as your name and your enrollments.</b></p>
+		  <p>This information is available to us through the <%= link_to 'official Coursera’s API platform', 'https://tech.coursera.org/app-platform/oauth2/', target: "_blank" %>.</p>
+		  <br>
+		  <%= button_to 'Proceed', 'auth/coursera', :class => 'form-button', :method => :get %>
+		  
+		</div>
+      </div>
+      <!-- //Box -->

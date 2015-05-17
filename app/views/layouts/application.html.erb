@@ -1,27 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pdfsnapshot</title>
+  <link href='http://fonts.googleapis.com/css?family=Exo+2:400,500,300,700,100' rel='stylesheet' type='text/css'>
+  <title>snapper.v7</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<h2> -FISSO- </h2>
+
+  <!-- Main containter -->	
+  <div class="main">
+	  
+    <!-- Header -->
+    <div class="header">
+      <div id="wrapper">
+        <a href="/" alt="Snapper"><div id="he2"></div></a>
+        <div id="he3">
+          <ul><a href="#"><span id="highlight">FAQ</span></a></ul>
+          <ul><a href="#"><span id="highlight">About</span></a></ul>
+        </div>
+      </div>
+    </div>
+    <!-- //Header -->
 	
 	
-	<% if flash[:snapshot_id].present? %>
-	<div data-status="<%= snapshots_status_path(flash[:snapshot_id]) %>">
-	  <p class='snapshot-processing'>Converting...</p>
-	  <p class='snapshot-error'>En error occured!</p>
-  	  <p class='snapshot-link'>
-  	    The snapshot is available: <%= link_to 'here', snapshot_url(flash[:snapshot_id]) %>.
-	  (Right click and copy link to share it).
-  	  </p>
-	</div>
-	<% end %>
+    <!-- Notice -->
+    <div class="notice">
+      1d 20h 53m left for: Homework #4 (Submission Deadline)
+    </div>
+    <!-- //Notice -->
+	  
+	  
+    <!-- Contents -->
+    <div class="contents">
+      <%= yield %>	  
+    </div>
+    <!-- //Contents -->
 
-<%= yield %>
-
+    <!-- More Contents -->	  
+    <div class="more-contents">
+      <div class="notes">Note: you need to be enrolled to the current active session of the course and allow this utility to validate your usage eligibility through the Coursera Auth API.
+      </div>
+    </div>
+    <!-- //More Contents -->
+	
+	  
+    <!-- Stats -->
+    <div class="stats">
+      <div class="data">
+        <numbers><%= stats_students %></numbers> students joined<br>
+        <numbers><%= stats_snapshots %></numbers> snapshots taken<br>
+        <numbers><%= stats_views %></numbers> snapshot unique views
+      </div>
+    </div>
+    <!-- //Stats -->	
+	
+	  
+    <!-- Footer -->
+    <div class="footer">
+      <a href="#"><span id="highlight">Privacy</span></a> &nbsp;&nbsp;&nbsp; <a href="#"><span id="highlight">Credits</span></a>
+    </div>
+    <!-- //Footer -->	
+	
+			  
+  </div>
+  <!-- //Main -->
+	
 </body>
+
 </html>

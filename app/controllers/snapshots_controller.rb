@@ -15,6 +15,16 @@ class SnapshotsController < ApplicationController
     if !session_url.nil?
       create
     end
+    @username = user_name
+  end
+  
+  def user_name
+    username = cookies[:_uname]
+    if !username.nil?
+      username.to_s.split(" ")[0]
+    else
+      "Guest"
+    end
   end
   
   def check_cookies
@@ -40,8 +50,9 @@ class SnapshotsController < ApplicationController
         
         if @snapshot.save
           #
-          @snapshot.snap # <-- asynchronous call handled by delayed_job
           @snapshot.generated_hash = generate_hash(@snapshot.id)
+          @snapshot.snap # <-- asynchronous call handled by delayed_job
+          @snapshot.views = 0
           @snapshot.save
           #
           flash[:snapshot_id] = @snapshot.generated_hash
@@ -52,7 +63,8 @@ class SnapshotsController < ApplicationController
         end
         
       else
-        render :text => "wrong/expired auth"
+        #render :text => "wrong/expired auth"
+        redirect_to '/auth/coursera'
       end
       
     else
@@ -67,9 +79,21 @@ class SnapshotsController < ApplicationController
     url.to_s(36)
   end
   
-  def show
+  def download
     @snapshot = Snapshot.find_by_generated_hash(params[:id])
-    redirect_to @snapshot.url
+    @filename = "#{Rails.root}/public/archive/snaps/snap_#{@snapshot.generated_hash}.pdf"
+    send_file(@filename,
+          :type => 'application/pdf/docx/html/htm/doc',
+          :disposition => 'attachment') 
+  end
+  
+  def show
+    @username = user_name
+    @snapshot = Snapshot.find_by_generated_hash(params[:id])
+    @snap_url = "/archive/snaps/snap_#{@snapshot.generated_hash}"
+    @snapshot.views += 1
+    @snapshot.save
+    #redirect_to snap_url
   end
   
   def snapshot_params
