@@ -3,7 +3,9 @@
         <div class="usermsg" id="snapshot-processing">
           <h1>Hey <%= @username %>, </h1>
 		  <h2>Your requested snapshot:</h2>
-		  <div class="snapframe"><img src="<%= @snap_url %>.png"></div>
+		  <div class="snapframe">
+			  <img src="<%= @snap_url %>.png" width="100%">
+		  </div>
 		  <p>Taken from <%= link_to @snap_from, @snap_from, target: "_blank" %> on <%= @snap_on %></p>
 		  <br>
 		  <p><%= button_to 'Download PDF', download_path(@snapshot.generated_hash), :class => 'form-button', :method => :get %></p>

@@ -290,11 +290,15 @@ iPhone 5 (320x568) iPhone 4 (320x480)
 .usermsg {
     text-align: center;
 }
+
+
 .snapframe {
 	padding: 10px;
 	border: 3px dashed #4e4e4e;
 	border-radius: 6px;
+	width:90%;
 }
+
 .inputarea {
     text-align: center;
     padding: 10px;
@@ -323,7 +327,6 @@ iPhone 5 (320x568) iPhone 4 (320x480)
     padding-bottom: 10px;
     font-size: 1.05em;
     min-height: 20px;
-    overflow: hidden;
     /*border: 1px solid black;*/
 }
 .contents {
