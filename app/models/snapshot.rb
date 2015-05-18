@@ -5,31 +5,71 @@ class Snapshot < ActiveRecord::Base
   def snap
     start_date = Time.now
     script = "ruby scripts/selenium-xvfb-task.rb #{url} #{generated_hash}"
-    p %x[ #{script} ]
-    done = $?.exitstatus == 0 ? 1 : -1 # 1 = ok, -1 = errors
+    exit = %x[ #{script} ]
+    #done = $?.exitstatus == 0 ? 1 : -1 # 1 = ok, -1 = errors
+    case exit
+    when "0"
+      done = 1
+    else
+      update_column :error, exit[exit.index(":")+2..-2]
+      done = -1
+    end
+    
+    puts "exit #{$?.exitstatus.class}"
+    puts "done #{done}"
+      
     if done == 1
       path = "public/archive/snaps/snap_#{generated_hash}"
       script = "img2pdf #{path}.png -o #{path}.pdf"
       p %x[ #{script} ]
+        
       done = $?.exitstatus == 0 ? 1 : -1 # 1 = ok, -1 = errors
     end
     end_date = Time.now - start_date
     update_column :ready, done
     update_column :duration, end_date
-    p end_date
-    p done
   end
+  
+  #def test_url
+  #  begin
+  #    Faraday.head(url)
+  #  rescue Exception => e
+  #    update_colum :error, e.message
+  #    update_column :ready, -1 # error
+  #    false
+  #  else
+  #    true
+  #  end
+  #end
   
   # delayed_job's built-in success callback method
-  def success(job)
-    p "LOOOOOOOL"
+  def success(job) # è andato in porto sicuro
+    p "successo"
   end
   
-  def after(job)
-    p "LOOOOOOOLsss"
+  def after(job) # puo essere fallito
+    p "dopo"
+  end
+  
+  def max_attempts
+    1
+  end
+  
+  def max_run_time
+    10.minutes
   end
   
   
   handle_asynchronously :snap#, run_at => Proc.new { 5.minutes.from_now }
+  
+  before_validation :smart_add_url_protocol
+
+  protected
+
+  def smart_add_url_protocol
+      unless self.url == '' || self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
+        self.url = "http://#{self.url.gsub(/\s+/, '')}"
+      end
+  end
   
 end

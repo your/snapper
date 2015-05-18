@@ -8,7 +8,8 @@
               <h1>Hold on, <%= @username %>..</h1>
               <h2>We are taking the snapshot..</h2>
               <div id="loading"><img src="http://sharped.net/img/loading.gif" alt="loading.."></div><br>
-			  <div>Estimated wait: <%= flash[:estimated_wait] %>s</div>
+			  <!--<div id="wait">Estimated wait: <%= flash[:estimated_wait] %>s</div>-->
+			  Estimated wait: <div id="clock">Computing..</div>
             </div>
             <div class="usermsg" id="snapshot-done">
               <h1>Good news <%= @username %>!</h1>
@@ -16,7 +17,7 @@
             </div>
             <!--<p class='snapshot-processing'>Converting...</p>-->
             <div class="generic-error" id="snapshot-error">
-              <span id="error-highlight">ERROR: Snapshot failed.</span>
+              <!--<span id="error-highlight">ERROR: Snapshot failed.</span>-->
             </div>
             <!--<p class='snapshot-link'>The snapshot is available: <%= link_to 'here', snapshot_url(flash[:snapshot_id]) %>.
 			(Right click and copy link to share it).</p>-->
@@ -43,7 +44,8 @@
           </div>
           <% if @snapshot.errors[:url].any? %>
             <div class="generic-error">
-              <span id="error-highlight">ERROR: URL <%= @snapshot.errors[:url].to_sentence %>.</span>
+              <!--<span id="error-highlight">-->
+               ERROR: URL <%= @snapshot.errors[:url].to_sentence %>.<!--</span>-->
             </div>
           <% end %>
         </div>

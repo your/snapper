@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui
  */
 
 body {
@@ -344,13 +345,16 @@ iPhone 5 (320x568) iPhone 4 (320x480)
     color: #fff;
     font-weight: 200;
     padding: 20px 0px 10px 0px;
-    width: 100%;
-    height: 120px;
+    height: 160px;
     background: #369bc8;
-    line-height: 1.8em
+    line-height: 1.8em;
 }
+
 .data {
-    width: 60%;
+  	width: 50%;
+    background: url('http://sharped.net/img/logo-des-back.png') no-repeat center top;
+    background-size: contain;
+    height: 150px;
     margin: 0 auto;
 }
 .footer {

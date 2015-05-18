@@ -7,6 +7,7 @@ class CreateSnapshots < ActiveRecord::Migration
       t.integer :views, default: 0
       t.integer :ready, default: 0
       t.integer :duration
+      t.string :error
       
       t.timestamps null: false
     end

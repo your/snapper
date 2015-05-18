@@ -1,5 +1,6 @@
 class SnapshotsController < ApplicationController
   
+  
   def get_url
     session_url = session[:_url]
     if session_url.nil?
@@ -10,7 +11,9 @@ class SnapshotsController < ApplicationController
   end
   
   def estimated_wait
-    flash[:estimated_wait] = Snapshot.where.not('duration' => nil).order("id desc").limit(10).average(:duration).to_i
+    base_wait = 30
+    #flash[:estimated_wait] = Snapshot.where.not('duration' => nil).order("id desc").limit(10).average(:duration).to_i + 10
+    Snapshot.where.not('duration' => nil).order("id desc").limit(10).average(:duration).to_i + base_wait
   end
   
   def new
@@ -37,9 +40,11 @@ class SnapshotsController < ApplicationController
   
   def status
      @snapshot = Snapshot.find_by_generated_hash(params[:snapshot_id])
-     render json: { id: @snapshot.generated_hash, ready: @snapshot.ready }
-   end
+     render json: { id: @snapshot.generated_hash, ready: @snapshot.ready, msg: @snapshot.error, wait: estimated_wait }
+  end
   
+
+    
   def create
     estimated_wait
     @snapshot = Snapshot.new(get_url)
@@ -56,10 +61,15 @@ class SnapshotsController < ApplicationController
         if @snapshot.save
           #
           @snapshot.generated_hash = generate_hash(@snapshot.id)
+          
+          #if @snapshot.test_url # check if URL is correct / is accessible
           @snapshot.snap # <-- asynchronous call handled by delayed_job
+          #end
+                      
           @snapshot.views = 0
           @snapshot.save
           #
+          
           flash[:snapshot_id] = @snapshot.generated_hash
           
           redirect_to new_snapshot_url
@@ -97,12 +107,12 @@ class SnapshotsController < ApplicationController
     @snapshot = Snapshot.find_by_generated_hash(params[:id])
     @snap_from = nil
     @snap_on = nil
-    if @snapshot
+    if @snapshot && @snapshot.ready == 1
       @snap_url = "/archive/snaps/snap_#{@snapshot.generated_hash}"
       @snapshot.views += 1
       @snapshot.save
       @snap_from = @snapshot.url
-      @snap_on = @snapshot.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%-d/%-m/%y: %H:%M %Z")
+      @snap_on = @snapshot.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%-d/%-m/%y, %H:%M %Z")
     else
       render :error
       #redirect_to '/snapshots/error'
