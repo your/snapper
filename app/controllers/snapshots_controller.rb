@@ -95,10 +95,14 @@ class SnapshotsController < ApplicationController
   def show
     @username = user_name
     @snapshot = Snapshot.find_by_generated_hash(params[:id])
+    @snap_from = nil
+    @snap_on = nil
     if @snapshot
       @snap_url = "/archive/snaps/snap_#{@snapshot.generated_hash}"
       @snapshot.views += 1
       @snapshot.save
+      @snap_from = @snapshot.url
+      @snap_on = @snapshot.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%-d/%-m/%y: %H:%M %Z")
     else
       render :error
       #redirect_to '/snapshots/error'
