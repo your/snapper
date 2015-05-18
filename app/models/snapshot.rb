@@ -4,6 +4,7 @@ class Snapshot < ActiveRecord::Base
   
   def snap
     start_date = Time.now
+    xvfb = "xvfb-run --server-args=\"-screen 0, 1024x768x24\" "
     script = "ruby scripts/selenium-xvfb-task.rb #{url} #{generated_hash}"
     exit = %x[ #{script} ]
     #done = $?.exitstatus == 0 ? 1 : -1 # 1 = ok, -1 = errors
