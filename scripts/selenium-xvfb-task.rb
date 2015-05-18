@@ -20,6 +20,9 @@ else
     driver.manage.window.maximize
 
     driver.get website
+    
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight); window.scrollTo(0,0);")
+        
     driver.save_screenshot filename
     driver.quit
     

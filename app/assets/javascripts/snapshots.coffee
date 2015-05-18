@@ -18,7 +18,7 @@ $(document).on 'ready page:load', ->
       $.get(div.data('status')).done (document) ->
         wait = moment.unix(moment().unix()+Number(document.wait)).format("YYYY/MM/DD HH:mm:ss") if first_poll == true
         first_poll = false if wait != ''
-        $("#wait").countdown wait, (event) ->
+        $("#clock").countdown wait, (event) ->
           $this = $(this).html(event.strftime("<span>%M</span> min " + "<span>%S</span> sec"))
         console.log 'Snapped ?', document.ready
         msg = document.msg
@@ -41,7 +41,7 @@ $(document).on 'ready page:load', ->
     poll div, ->
       if error
         $('[data-status]').children("#snapshot-processing").children("#loading").hide()
-        $('[data-status]').children("#snapshot-processing").children("#wait").hide()
+        $('[data-status]').children("#snapshot-processing").children("#clock").hide()
         div.children("#snapshot-error").text('ERROR: Snapshot failed - ' + msg)
         div.children("#snapshot-error").show("slide", { direction: "left" }, 400)
       else
