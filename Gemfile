@@ -36,6 +36,7 @@ gem 'omniauth-oauth2'
 gem 'omniauth-coursera', :path => "omniauth-coursera/"
 
 gem 'delayed_job_active_record' 
+gem 'daemons'
 
 gem 'selenium-webdriver'
 

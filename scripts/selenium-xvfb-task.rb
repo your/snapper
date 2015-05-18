@@ -8,7 +8,7 @@ if website.nil? || snapshot_id.nil?
 else
   
   driver = Selenium::WebDriver.for :firefox
-  
+    
   filename = "public/archive/snaps/snap_#{snapshot_id}.png"
 
   driver.get website

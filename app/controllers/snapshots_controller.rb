@@ -9,6 +9,10 @@ class SnapshotsController < ApplicationController
     end
   end
   
+  def estimated_wait
+    flash[:estimated_wait] = Snapshot.where.not('duration' => nil).order("id desc").limit(10).average(:duration).to_i
+  end
+  
   def new
     @snapshot = Snapshot.new
     session_url = session[:_url]
@@ -37,6 +41,7 @@ class SnapshotsController < ApplicationController
    end
   
   def create
+    estimated_wait
     @snapshot = Snapshot.new(get_url)
     session[:_url] = nil # destroy immediately session url!
     
@@ -90,10 +95,18 @@ class SnapshotsController < ApplicationController
   def show
     @username = user_name
     @snapshot = Snapshot.find_by_generated_hash(params[:id])
-    @snap_url = "/archive/snaps/snap_#{@snapshot.generated_hash}"
-    @snapshot.views += 1
-    @snapshot.save
-    #redirect_to snap_url
+    if @snapshot
+      @snap_url = "/archive/snaps/snap_#{@snapshot.generated_hash}"
+      @snapshot.views += 1
+      @snapshot.save
+    else
+      render :error
+      #redirect_to '/snapshots/error'
+      #redirect_to snap_url
+    end
+  end
+  
+  def error
   end
   
   def snapshot_params

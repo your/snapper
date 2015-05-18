@@ -15,8 +15,13 @@ class ApplicationController < ActionController::Base
     @stats_views = Snapshot.sum(:views)
   end
   
+  #def latest_duration
+  #  @latest_duration = Snapshot.last.duration
+  #end
+  
   helper_method :stats_students
   helper_method :stats_snapshots
   helper_method :stats_views
+  #helper_method :latest_duration
   
 end

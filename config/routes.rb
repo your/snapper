@@ -3,10 +3,13 @@ Rails.application.routes.draw do
 
   #get 'snapshots/new'
   resources :snapshots, :only => [:show, :new, :create, :update]
+    
+  #resources :users do
+  #  resources :snapshots
+  #end
   
-  resources :users do
-    resources :snapshots
-  end
+  resources :users, :only => []
+  
   
   root :to => redirect('/snapshots/new')
     
@@ -16,8 +19,10 @@ Rails.application.routes.draw do
   get '/auth/failure', :to => 'sessions#failure'
   get 'snapshots/status/:snapshot_id', to: 'snapshots#status', as: 'snapshots_status'
   match '/snapshots/download/:id' => 'snapshots#download', :as => :download, via: :get
+  get '/snapshots/error', :to => 'snapshots#error'
   
-  get '/snapshots', to: redirect('/snapshots/new')  
+  get '/snapshots', to: redirect('/snapshots/new') 
+     
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

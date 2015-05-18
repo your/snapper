@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150502161500) do
     t.integer  "user_id",                    null: false
     t.integer  "views",          default: 0
     t.integer  "ready",          default: 0
+    t.integer  "duration"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
