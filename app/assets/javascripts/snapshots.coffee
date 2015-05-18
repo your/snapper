@@ -18,6 +18,7 @@ $(document).on 'ready page:load', ->
       $.get(div.data('status')).done (document) ->
         wait = moment.unix(moment().unix()+Number(document.wait)).format("YYYY/MM/DD HH:mm:ss") if first_poll == true
         first_poll = false if wait != ''
+		console.log 'wait up to: ', wait
         $("#clock").countdown wait, (event) ->
           $this = $(this).html(event.strftime("<span>%M</span> min " + "<span>%S</span> sec"))
         console.log 'Snapped ?', document.ready
