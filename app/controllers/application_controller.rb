@@ -25,6 +25,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def queue_load
+    Delayed::Job.where('locked_by is not null').count
+  end
   #def latest_duration
   #  @latest_duration = Snapshot.last.duration
   #end
@@ -33,6 +36,7 @@ class ApplicationController < ActionController::Base
   helper_method :stats_snapshots
   helper_method :stats_views
   helper_method :user_name
+  helper_method :queue_load
   #helper_method :latest_duration
   
 end

@@ -11,9 +11,9 @@ class SnapshotsController < ApplicationController
   end
   
   def estimated_wait
-    base_wait = 10
+    base_wait = 2
     #flash[:estimated_wait] = Snapshot.where.not('duration' => nil).order("id desc").limit(10).average(:duration).to_i + 10
-    Snapshot.where.not('duration' => nil).order("id desc").limit(10).average(:duration).to_i + base_wait
+    Snapshot.where.not('duration' => nil).order("id desc").limit(10).average(:duration).to_i + queue_load*base_wait
   end
   
   def new
