@@ -25,6 +25,8 @@ else
       driver.execute_script("viewable = 600; step = Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++) { window.scrollTo(0, viewable * i); }")
       driver.execute_script("window.scrollTo(0, 0);")
     }
+    
+    sleep 1
         
     driver.save_screenshot filename
     driver.quit
