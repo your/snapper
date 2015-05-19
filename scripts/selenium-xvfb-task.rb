@@ -25,15 +25,11 @@ else
     
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     wait.until { 
-      driver.execute_script("function scroll() { viewable = 600; step = Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++) { window.scrollTo(0, viewable * i); } return true; } return scroll();")
-      driver.execute_script("window.scrollTo(0, 0); return true; ")
-      driver.execute_script("$(\":animated\").promise().done(function() { return true; });")
+      3.times {
+        driver.execute_script("function scroll() { viewable = 600; step = Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++) { window.scrollTo(0, viewable * i); } return true; } return scroll();")
+        driver.execute_script("window.scrollTo(0, 0); return true; ")
+      }
     }
-    
-    #2.times {
-      
-    #}
-    #sleep 1
         
     driver.save_screenshot filename
     driver.quit
