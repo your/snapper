@@ -43,7 +43,7 @@ gem 'daemons'
 
 gem 'selenium-webdriver'
 
-gem 'faraday'
+gem 'high_voltage', '~> 2.3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

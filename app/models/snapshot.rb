@@ -1,7 +1,7 @@
 class Snapshot < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :url
-  
+    
   def snap
     start_date = Time.now
     xvfb = "xvfb-run --server-args=\"-screen 0, 1024x768x24\" "
