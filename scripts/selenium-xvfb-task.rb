@@ -14,6 +14,8 @@ else
   
     driver = Selenium::WebDriver.for :firefox
     
+    driver.manage.timeouts.page_load = 10 # seconds 
+    
     filename = "public/archive/snaps/snap_#{snapshot_id}.png"
     
     driver.manage.window.resize_to(1024, 768)
@@ -21,12 +23,16 @@ else
 
     driver.get website
     
-    2.times {
+    wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+    wait.until { 
       driver.execute_script("viewable = 600; step = Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++) { window.scrollTo(0, viewable * i); }")
       driver.execute_script("window.scrollTo(0, 0);")
     }
     
-    sleep 1
+    #2.times {
+      
+    #}
+    #sleep 1
         
     driver.save_screenshot filename
     driver.quit
