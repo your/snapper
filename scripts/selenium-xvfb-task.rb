@@ -21,7 +21,7 @@ else
     driver.manage.window.resize_to(1024, 768)
     driver.manage.window.maximize
 
-    driver.get 'http://google.com'
+    driver.get website
     
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     wait.until { 
