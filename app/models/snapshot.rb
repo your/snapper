@@ -25,10 +25,19 @@ class Snapshot < ActiveRecord::Base
       
     if done == 1
       path = "public/archive/snaps/snap_#{generated_hash}"
-      script = "img2pdf #{path}.png -o #{path}.pdf"
+      script = "pngquant --quality=45-55 #{path}.png ; mv #{path}-fs8.png #{path}.png"
       p %x[ #{script} ]
         
       done = $?.exitstatus == 0 ? 1 : -1 # 1 = ok, -1 = errors
+      
+      if done == 1
+        path = "public/archive/snaps/snap_#{generated_hash}"
+        script = "img2pdf #{path}.png -o #{path}.pdf"
+        p %x[ #{script} ]
+        
+        done = $?.exitstatus == 0 ? 1 : -1 # 1 = ok, -1 = errors
+        
+      end
     end
     end_date = Time.now - start_date
     update_column :ready, done

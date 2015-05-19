@@ -16,6 +16,15 @@ class ApplicationController < ActionController::Base
     @stats_views = Snapshot.sum(:views)
   end
   
+  def user_name
+    username = cookies[:_uname]
+    if !username.nil?
+      username.to_s.split(" ")[0]
+    else
+      "Guest"
+    end
+  end
+  
   #def latest_duration
   #  @latest_duration = Snapshot.last.duration
   #end
@@ -23,6 +32,7 @@ class ApplicationController < ActionController::Base
   helper_method :stats_students
   helper_method :stats_snapshots
   helper_method :stats_views
+  helper_method :user_name
   #helper_method :latest_duration
   
 end

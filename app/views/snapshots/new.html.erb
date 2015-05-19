@@ -5,14 +5,14 @@
           <!-- data-status -->
           <div data-status="<%= snapshots_status_path(flash[:snapshot_id]) %>">
             <div class="usermsg" id="snapshot-processing">
-              <h1>Hold on, <%= @username %>..</h1>
+              <h1>Hold on, <%= user_name %>..</h1>
               <h2>We are taking the snapshot..</h2>
               <div id="loading"><img src="http://sharped.net/img/loading.gif" alt="loading.."></div><br>
 			  <!--<div id="wait">Estimated wait: <%= flash[:estimated_wait] %>s</div>-->
 			  Estimated wait: <div id="clock">Computing..</div>
             </div>
             <div class="usermsg" id="snapshot-done">
-              <h1>Good news <%= @username %>!</h1>
+              <h1>Good news <%= user_name %>!</h1>
               <h2>Your snapshot is available: <%= link_to 'here', snapshot_url(flash[:snapshot_id]) %>.</h2>
             </div>
             <!--<p class='snapshot-processing'>Converting...</p>-->
@@ -31,7 +31,7 @@
       <!-- Box -->
         <div class="box">
           <div class="usermsg">
-            <h1>Hello <%= @username %>!</h1>
+            <h1>Hello <%= user_name %>!</h1>
             <h2>Type/paste the project website URL:</h2>
           </div>
           <div class="inputarea">

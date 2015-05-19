@@ -1,0 +1,17 @@
+      <!-- Box -->
+      <div class="box">
+        <div class="usermsg" id="snapshot-processing">
+          <h1><%= user_name %>,</h1>
+		  <h2>We weren't able to authorize you:</h2>
+		 
+		  <br><b>
+		  <p>You didn't authorize this tool to access your basic profile info on Coursera <i>or</i></p>
+		  <p>You typed in a wrong user/pass combination on Coursera <i>or</i></p>
+		  <p>You are not enrolled on the current session (if any) of the course.</p></b>
+		  <br>
+		  <p>To continue, make sure you meet all the requirements above</p>
+		  <%= button_to 'Try again', 'auth/coursera', :class => 'form-button', :method => :get %>
+		  
+		</div>
+      </div>
+      <!-- //Box -->
