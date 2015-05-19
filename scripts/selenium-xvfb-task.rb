@@ -21,12 +21,12 @@ else
     driver.manage.window.resize_to(1024, 768)
     driver.manage.window.maximize
 
-    driver.get website
+    driver.get 'http://google.com'
     
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     wait.until { 
-      driver.execute_script("viewable = 600; step = Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++) { window.scrollTo(0, viewable * i); }")
-      driver.execute_script("window.scrollTo(0, 0);")
+      driver.execute_script("function scroll() { viewable = 600; step = Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++) { window.scrollTo(0, viewable * i); } return true; } return scroll();")
+      driver.execute_script("window.scrollTo(0, 0); return true; ")
     }
     
     #2.times {
