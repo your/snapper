@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/snapshots/error', :to => 'snapshots#error'
   
   get '/snapshots', to: redirect('/snapshots/new') 
+  
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
      
   
   # The priority is based upon order of creation: first created -> highest priority.
