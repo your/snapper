@@ -21,7 +21,7 @@ else
 
     driver.get website
     
-    driver.execute_script("viewable = 600; step = Math.ceil(document.body.scrollHeight / viewable); for (i = 1; i <= step; i++) { window.scrollTo(0, viewable * i); if (i === step) { window.scrollTo(0, 0); }} ")
+    driver.execute_script("viewable = 600; step = Math.ceil(document.body.scrollHeight / viewable); for (i = step; i >=0 ; i--) { window.scrollTo(0, viewable * i); }")
         
     driver.save_screenshot filename
     driver.quit
