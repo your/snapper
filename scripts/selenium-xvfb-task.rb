@@ -49,7 +49,7 @@ else
     #}
     #}
         
-    driver.save_screenshot filename
+    #driver.save_screenshot filename
     driver.quit
     
     print 0 # no errors
