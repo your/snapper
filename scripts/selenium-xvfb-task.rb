@@ -13,6 +13,7 @@ else
   if $?.exitstatus == 0 # no errors
   
     profile = Selenium::WebDriver::Firefox::Profile.new
+    profile.native_events = false
     profile['download.prompt_for_download'] = false
     profile['download.default_directory'] = "/dev/null"
     profile['accept_untrusted_certs'] = true 
