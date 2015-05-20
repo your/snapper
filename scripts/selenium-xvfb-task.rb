@@ -32,12 +32,12 @@ else
     
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     wait.until { 
-      2.times {
+      3.times {
         driver.execute_script("
-        var viewable = 600;
+        var viewable = 200;
         var step = Math.ceil(document.body.scrollHeight / viewable);
         var delay = 0;
-        var delayMilliseconds = 250;
+        var delayMilliseconds = 200;
 
         for (var i=0; i<= step; i++) {
             (function(j){
