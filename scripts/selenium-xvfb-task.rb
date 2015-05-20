@@ -28,7 +28,7 @@ else
 
     driver.get website
     
-    wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+    wait = Selenium::WebDriver::Wait.new(:timeout => 60)
     wait.until { 
       1.times {
         driver.execute_script("
