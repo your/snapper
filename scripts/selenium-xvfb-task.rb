@@ -20,8 +20,8 @@ else
     driver = Selenium::WebDriver.for :firefox, :profile => profile
     
     driver.manage.timeouts.page_load = 30 # seconds 
-    driver.manage.timeouts.script_timeout = 20
-    driver.manage.timeouts.implicit_wait = 20
+    driver.manage.timeouts.script_timeout = 30
+    #driver.manage.timeouts.implicit_wait = 20
     
     filename = "public/archive/snaps/snap_#{snapshot_id}.png"
     
@@ -32,12 +32,12 @@ else
     
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     wait.until { 
-      1.times {
+      2.times {
         driver.execute_script("
         var viewable = 600;
         var step = Math.ceil(document.body.scrollHeight / viewable);
         var delay = 0;
-        var delayMilliseconds = 50;
+        var delayMilliseconds = 250;
 
         for (var i=0; i<= step; i++) {
             (function(j){
