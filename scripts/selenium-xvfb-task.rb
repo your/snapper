@@ -18,7 +18,11 @@ else
     #profile['download.default_directory'] = "/dev/null"
     #profile['accept_untrusted_certs'] = true 
     
-    driver = Selenium::WebDriver.for :firefox#, :profile => profile
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.timeout = 120 # seconds
+    driver = Selenium::WebDriver.for(:firefox, :http_client => client)
+    
+    #driver = Selenium::WebDriver.for :firefox#, :profile => profile
     
     driver.manage.timeouts.page_load = 120 # seconds 
     driver.manage.timeouts.script_timeout = 30
