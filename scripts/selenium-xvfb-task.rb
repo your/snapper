@@ -7,7 +7,7 @@ if website.nil? || snapshot_id.nil?
   print 1
 else
   
-  test_url = "curl -I -N -Ss #{website} 2>&1"
+  test_url = "curl -A \"Mozilla/5.0 (X11; Linux x86_64; rv:28.0) Gecko/20100101 Firefox/28.0\" -I -N -Ss #{website} 2>&1"
   res = %x[ #{test_url} ]
   
   if $?.exitstatus == 0 # no errors
@@ -30,7 +30,7 @@ else
 
     driver.get website
     
-    wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+    wait = Selenium::WebDriver::Wait.new(:timeout => 30)
     wait.until { 
       3.times {
         driver.execute_script("
