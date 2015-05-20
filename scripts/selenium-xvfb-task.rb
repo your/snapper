@@ -12,16 +12,16 @@ else
   
   if $?.exitstatus == 0 # no errors
   
-    profile = Selenium::WebDriver::Firefox::Profile.new
-    profile.native_events = false
-    profile['download.prompt_for_download'] = false
-    profile['download.default_directory'] = "/dev/null"
-    profile['accept_untrusted_certs'] = true 
+    #profile = Selenium::WebDriver::Firefox::Profile.new
+    #profile.native_events = false
+    #profile['download.prompt_for_download'] = false
+    #profile['download.default_directory'] = "/dev/null"
+    #profile['accept_untrusted_certs'] = true 
     
-    driver = Selenium::WebDriver.for :firefox, :profile => profile
+    driver = Selenium::WebDriver.for :firefox#, :profile => profile
     
-    driver.manage.timeouts.page_load = 30 # seconds 
-    driver.manage.timeouts.script_timeout = 30
+    driver.manage.timeouts.page_load = 60 # seconds 
+    driver.manage.timeouts.script_timeout = 60
     #driver.manage.timeouts.implicit_wait = 20
     
     filename = "public/archive/snaps/snap_#{snapshot_id}.png"
@@ -33,13 +33,13 @@ else
     
     wait = Selenium::WebDriver::Wait.new(:timeout => 30)
     #wait.until { 
-    #  3.times {
-    #    driver.execute_script("for(var viewable=200,step=Math.ceil(document.body.scrollHeight/viewable),delay=0,delayMilliseconds=200,i=0;step>=i;i++)!function(e){delay=e*delayMilliseconds,setTimeout(function(){window.scroll(0,e*viewable)},delay)}(i);")
-    #    driver.execute_script("window.scrollTo(0, 0); return true; ")
-    #  }
+    #    driver.execute_script("for(var viewable=300,step=Math.ceil(document.body.scrollHeight/viewable),delay=0,delayMilliseconds=700,i=0;step>=i;i++)!function(e){delay=e*delayMilliseconds,setTimeout(function(){return window.scroll(0,e*viewable),console.log(i,step,e*viewable),e*viewable===3900?!0:void 0},delay)}(i);")
+    #}
+    #wait.until {
+    #  driver.execute_script("window.scrollTo(0, 0);")
     #}
     wait.until { 
-      3.times {
+      5.times {
         driver.execute_script("function scroll() { viewable = 600; step =   Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++)  { window.scrollTo(0, viewable * i); } return true; } return scroll();")
         driver.execute_script("window.scrollTo(0, 0); return true; ")
     }
