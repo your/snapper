@@ -42,6 +42,7 @@ $(document).on 'ready page:load', ->
     poll div, ->
       if error
         $('[data-status]').children("#snapshot-processing").children("#loading").hide()
+        $('[data-status]').children("#snapshot-processing").children("#wait").hide()
         $('[data-status]').children("#snapshot-processing").children("#clock").hide()
         div.children("#snapshot-error").text('ERROR: Snapshot failed - ' + msg)
         div.children("#snapshot-error").show("slide", { direction: "left" }, 400)
