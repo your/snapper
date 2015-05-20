@@ -34,20 +34,7 @@ else
     wait = Selenium::WebDriver::Wait.new(:timeout => 30)
     wait.until { 
       3.times {
-        driver.execute_script("
-        var viewable = 200;
-        var step = Math.ceil(document.body.scrollHeight / viewable);
-        var delay = 0;
-        var delayMilliseconds = 200;
-
-        for (var i=0; i<= step; i++) {
-            (function(j){
-                delay = j*delayMilliseconds;
-                setTimeout(function(){
-                   window.scroll(0, j*viewable);
-                },delay);
-            })( i );
-        } return true;")
+        driver.execute_script("for(var viewable=200,step=Math.ceil(document.body.scrollHeight/viewable),delay=0,delayMilliseconds=200,i=0;step>=i;i++)!function(e){delay=e*delayMilliseconds,setTimeout(function(){window.scroll(0,e*viewable)},delay)}(i);")
         driver.execute_script("window.scrollTo(0, 0); return true; ")
       }
     }
