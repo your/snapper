@@ -32,12 +32,18 @@ else
     driver.get website
     
     wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+    #wait.until { 
+    #  3.times {
+    #    driver.execute_script("for(var viewable=200,step=Math.ceil(document.body.scrollHeight/viewable),delay=0,delayMilliseconds=200,i=0;step>=i;i++)!function(e){delay=e*delayMilliseconds,setTimeout(function(){window.scroll(0,e*viewable)},delay)}(i);")
+    #    driver.execute_script("window.scrollTo(0, 0); return true; ")
+    #  }
+    #}
     wait.until { 
       3.times {
-        driver.execute_script("for(var viewable=200,step=Math.ceil(document.body.scrollHeight/viewable),delay=0,delayMilliseconds=200,i=0;step>=i;i++)!function(e){delay=e*delayMilliseconds,setTimeout(function(){window.scroll(0,e*viewable)},delay)}(i);")
+        driver.execute_script("function scroll() { viewable = 600; step =   Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++)  { window.scrollTo(0, viewable * i); } return true; } return scroll();")
         driver.execute_script("window.scrollTo(0, 0); return true; ")
-      }
     }
+  }
         
     driver.save_screenshot filename
     driver.quit
