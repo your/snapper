@@ -12,21 +12,21 @@ else
   
   if $?.exitstatus == 0 # no errors
   
-    #profile = Selenium::WebDriver::Firefox::Profile.new
-    #profile.native_events = false
-    #profile['download.prompt_for_download'] = false
-    #profile['download.default_directory'] = "/dev/null"
-    #profile['accept_untrusted_certs'] = true 
+    profile = Selenium::WebDriver::Firefox::Profile.new
+    profile.native_events = false
+    profile['download.prompt_for_download'] = false
+    profile['download.default_directory'] = "/dev/null"
+    profile['accept_untrusted_certs'] = true 
     
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 120 # seconds
-    driver = Selenium::WebDriver.for(:firefox, :http_client => client)
+    driver = Selenium::WebDriver.for :firefox, :http_client => client, :profile => profile
     
     #driver = Selenium::WebDriver.for :firefox#, :profile => profile
     
-    #driver.manage.timeouts.page_load = 120 # seconds 
-    #driver.manage.timeouts.script_timeout = 30
-    #driver.manage.timeouts.implicit_wait = 20
+    driver.manage.timeouts.page_load = 120 # seconds 
+    driver.manage.timeouts.script_timeout = 30
+    driver.manage.timeouts.implicit_wait = 20
     
     filename = "public/archive/snaps/snap_#{snapshot_id}.png"
     
@@ -42,14 +42,14 @@ else
     #wait.until {
     #  driver.execute_script("window.scrollTo(0, 0);")
     #}
-    #wait.until { 
-    #  5.times {
-    #    driver.execute_script("function scroll() { viewable = 600; step =   Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++)  { window.scrollTo(0, viewable * i); } return true; } return scroll();")
-    #    driver.execute_script("window.scrollTo(0, 0); return true; ")
-    #}
-    #}
-        
-    #driver.save_screenshot filename
+    wait.until { 
+      5.times {
+        driver.execute_script("function scroll() { viewable = 600; step =   Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++)  { window.scrollTo(0, viewable * i); } return true; } return scroll();")
+        driver.execute_script("window.scrollTo(0, 0); return true; ")
+      }
+    }
+    
+    driver.save_screenshot filename
     driver.quit
     
     print 0 # no errors
