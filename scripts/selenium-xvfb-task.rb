@@ -24,8 +24,8 @@ else
     
     #driver = Selenium::WebDriver.for :firefox#, :profile => profile
     
-    driver.manage.timeouts.page_load = 120 # seconds 
-    driver.manage.timeouts.script_timeout = 30
+    #driver.manage.timeouts.page_load = 120 # seconds 
+    #driver.manage.timeouts.script_timeout = 30
     #driver.manage.timeouts.implicit_wait = 20
     
     filename = "public/archive/snaps/snap_#{snapshot_id}.png"
