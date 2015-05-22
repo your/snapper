@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
   helper_method :stats_snapshots
   helper_method :stats_views
   helper_method :user_name
+  helper_method :is_guest?
   helper_method :queue_load
   #helper_method :latest_duration
   
