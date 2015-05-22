@@ -160,7 +160,7 @@ ul {
         border: 0px solid red;
         text-align: right;
         background: url('http://sharped.net/img/logo-1.png') no-repeat right top;
-        height: 70px;
+        height: 100px;
     }
     #he3 {
         margin-right: 13.5%;
@@ -201,7 +201,7 @@ iPad 2 (768x1024)
         border: 0px solid red;
         text-align: right;
         background: url('http://sharped.net/img/logo-1.png') no-repeat right top;
-        height: 70px;
+        height: 100px;
     }
     #he3 {
         margin-right: 0.5%;
@@ -244,7 +244,7 @@ iPhone 6 (375x667)
         border: 0px solid red;
         text-align: right;
         background: url('http://sharped.net/img/logo-2.png') no-repeat right top;
-        height: 75px;
+        height: 85px;
         padding-left: 3.5%;
     }
     #he3 {
@@ -281,7 +281,7 @@ iPhone 5 (320x568) iPhone 4 (320x480)
         border: 0px solid red;
         text-align: center;
         background: url('http://sharped.net/img/logo-2.png') no-repeat right top;
-        height: 75px;
+        height: 85px;
         padding-left: 3%;
     }
     #he3 {
@@ -315,7 +315,7 @@ iPhone 5 (320x568) iPhone 4 (320x480)
     width: 100%;
     min-height: 100px;
     border: 0px solid black;
-    padding: 55px 0px 10px 0px;
+    padding: 40px 0px 30px 0px;
     overflow: hidden;
     /* will contain if #first is longer than #second */
 }
@@ -356,7 +356,7 @@ iPhone 5 (320x568) iPhone 4 (320x480)
 }
 .notice {
     width: 100%;
-    background: #fafafa;
+    background: #f0f0c2; /*#fafafa;*/
     text-align: center;
     color: red;
     padding-top: 10px;
@@ -367,8 +367,8 @@ iPhone 5 (320x568) iPhone 4 (320x480)
     /*border: 1px solid black;*/
 }
 .contents {
-    padding-top: 60px;
-    padding-bottom: 90px;
+    padding-top: 55px;
+    padding-bottom: 85px;
     width: 100%;
     background: #fff;
     font-size: 1.2em;

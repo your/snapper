@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def is_guest?
+    user_name == "Guest" ? true : false
+  end
+  
   def queue_load
     Delayed::Job.where('locked_by is not null').count
   end
