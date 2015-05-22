@@ -2,12 +2,10 @@
       <div class="box">
         <div class="usermsg" id="snapshot-processing">
           <h1><%= user_name %>, we need to verify your identity.</h1>
-		  <h2> What does it mean?</h2>
+		  <h2> Only enrolled students can use this tool,</h2>
 		 
-		  <br>
-		  <p>To use this tool, you need to be enrolled to the current session of the course.</p>
-		  <b><p>Thus, we need you to authorize this app to be able access your Coursera basic information,
-			  <br>such as your name and your enrollments.</b></p>
+		  <b><p>thus you have to authorize this app to access your Coursera basic information,
+			  <br>such as your <i>name</i> and your <i>enrollments</i>.</b></p>
 		  <p>This information is available to us through the <%= link_to 'official Coursera’s API platform', 'https://tech.coursera.org/app-platform/oauth2/', target: "_blank" %>.</p>
 		  <br>
 		  <%= button_to 'Proceed', 'auth/coursera', :class => 'form-button', :method => :get %>

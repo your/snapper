@@ -2,7 +2,7 @@
 <html>
 <head>
   <link href='http://fonts.googleapis.com/css?family=Exo+2:400,500,300,700,100' rel='stylesheet' type='text/css'>
-  <title>snapper.v7</title>
+  <title>snapper</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -52,9 +52,10 @@
     <!-- Stats -->
     <div class="stats">
       <div class="data">
-        <numbers><%= stats_students %></numbers> students joined<br>
-        <numbers><%= stats_snapshots %></numbers> snapshots taken<br>
-        <numbers><%= stats_views %></numbers> snapshot unique views
+        <numbers><%= stats_students %></numbers>&nbsp;&nbsp;students used this tool<br>
+        <numbers><%= stats_snapshots %></numbers>&nbsp;&nbsp;snapshots taken<br>
+        <numbers><%= stats_views %></numbers>&nbsp;&nbsp;snapshots unique views<br>
+		<p><i><a href="#">&nbsp;&nbsp;Want to join the course?</a></i></p>
       </div>
     </div>
     <!-- //Stats -->	

@@ -16,6 +16,7 @@
  */
 
 body {
+	margin: 0px;
     background: #fafafa;
     font-family: 'Exo 2', Helvetica, sans-serif;
 }
@@ -57,7 +58,7 @@ h2 {
     box-sizing: content-box;
     cursor: pointer;
     padding: 12px 20px;
-    border: 1px solid #018dc4;
+    border: 1px solid #888;
     -webkit-border-radius: 3px;
     border-radius: 3px;
     font-family: 'Exo 2', sans-serif;
@@ -67,11 +68,16 @@ h2 {
     color: rgba(255, 255, 255, 0.9);
     -o-text-overflow: clip;
     text-overflow: clip;
-    background: #369bc8;
+    background: #888888;
     -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
     -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
     -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
     transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+    opacity: 0.75;
+}
+.form-button:hover {
+  opacity: 1;
+  background: #CF4647;
 }
 .form-input {
     width: 80%;
@@ -95,26 +101,40 @@ h2 {
     -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
     transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+
+.loader{
+  width: 20%;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: top;
+}
+
+svg path,
+svg rect{
+  fill: #006bb3;
+}
+
 numbers {
     font-weight: 500;
     font-size: 2.2em;
-    color: #fff;
+    color: #555353;
 }
-A:link {
-    COLOR: #369bc8;
-    TEXT-DECORATION: none;
+a:link {
+    color: #369bc8;
+    text-decoration: none;
 }
-A:visited {
-    COLOR: #369bc8;
-    TEXT-DECORATION: none;
+a:visited {
+    color: #369bc8;
+    text-decoration: none;
 }
-A:active {
-    COLOR: #4e4e4e;
-    TEXT-DECORATION: none
+a:active {
+    color: #4e4e4e;
+    text-decoration: none;
 }
-A:hover {
-    COLOR: #4e4e4e;
-    TEXT-DECORATION: none;
+a:hover {
+    color: #4e4e4e;
+    text-decoration: none;
 }
 ul {
     margin: 0;
@@ -155,6 +175,9 @@ ul {
         padding: 10px 145px 10px 145px;
         text-align: justify;
     }
+	.notes {
+	    padding: 10px 145px 10px 145px;
+	}
 }
 /*
 Laptops: 1024x768 800x600
@@ -193,6 +216,9 @@ iPad 2 (768x1024)
         padding: 10px 105px 10px 105px;
         text-align: justify;
     }
+	.notes {
+	    padding: 10px 145px 10px 145px;
+	}
 }
 /*
 Nexus 5 (360x598)
@@ -233,6 +259,9 @@ iPhone 6 (375x667)
     ul {
         font-size: 1em;
     }
+	.notes {
+	    padding: 5px 10px 5px 10px;
+	}
 }
 /*
 iPhone 5 (320x568) iPhone 4 (320x480)
@@ -273,11 +302,14 @@ iPhone 5 (320x568) iPhone 4 (320x480)
     numbers {
         font-size: 1.7em;
     }
+	.notes {
+	    padding: 5px 10px 5px 10px;
+	}
 }
 .main {
     width: 100%;
     height: 100%;
-    background: #73abc4;
+    background: #006bb3;
 }
 .header {
     width: 100%;
@@ -317,15 +349,14 @@ iPhone 5 (320x568) iPhone 4 (320x480)
 .notes {
     font-weight: 200;
     text-align: center;
-    padding: 10px 10px 10px 10px;
     border: 1px solid #fff;
-    width: 80%;
-    margin: 0 auto;
     color: white;
+	margin-right: 15%;
+	margin-left: 15%;
 }
 .notice {
     width: 100%;
-    background: #f6b5b5;
+    background: #fafafa;
     text-align: center;
     color: red;
     padding-top: 10px;
@@ -346,22 +377,23 @@ iPhone 5 (320x568) iPhone 4 (320x480)
 .more-contents {
     width: 100%;
     height: 130px;
-    background: #73abc4;
+    background: #006bb3;
     padding-top: 5%;
-    /*border: 1px solid black;*/
 }
 .stats {
-    color: #fff;
-    font-weight: 200;
+    color: #555353;
+    font-weight: 300;
     padding: 20px 0px 10px 0px;
     height: 160px;
-    background: #369bc8;
+    background: #fafafa;
     line-height: 1.8em;
+    border-top: 30px solid white;
+    border-bottom: 30px solid white;
 }
 
 .data {
   	width: 50%;
-    background: url('http://sharped.net/img/logo-des-back.png') no-repeat center top;
+    background: url('http://sharped.net/img/logo-design-back.png') no-repeat center top;
     background-size: contain;
     height: 150px;
     margin: 0 auto;
@@ -369,7 +401,7 @@ iPhone 5 (320x568) iPhone 4 (320x480)
 .footer {
     width: 100%;
     height: 50px;
-    background: #73abc4;
+    background: #006bb3;
     color: #efefef;
     font-weight: 200;
     padding-top: 15px;

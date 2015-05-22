@@ -10,6 +10,16 @@ $(document).on 'ready page:load', ->
   first_poll = true
   msg = ''
   wait = ''
+	
+  $('.inputarea').find(':submit').on 'click', ->
+    $('html').css( "cursor", "progress" );
+    $('.inputarea').attr('disabled','disabled');
+	
+  $('.inputarea').on 'submit', ->
+    $('html').css( "cursor", "progress" );
+    $(this).find(':submit').attr('disabled','disabled');
+    #$('button[type=submit], input[type=submit]').attr('disabled',true);
+    #$('.inputarea :input').prop('disabled', true);
 	  
   poll = (div, callback) ->
     # Short timeout to avoid too many calls
@@ -47,7 +57,7 @@ $(document).on 'ready page:load', ->
         div.children("#snapshot-error").text('ERROR: Snapshot failed - ' + msg)
         div.children("#snapshot-error").show("slide", { direction: "left" }, 400)
       else
-        div.children(".snapshot-link").show("slide", { direction: "left" }, "slow")
-        $('[data-status]').children("#snapshot-processing").hide()
-        $('[data-status]').children("#snapshot-done").show("slide", { direction: "left" }, 400)
+        $('[data-status]').children("#snapshot-processing").fadeOut("fast")
+        $('[data-status]').children("#snapshot-done").show("slide", { direction: "down" }, 400)
+        div.children(".snapshot-link").show("slide", { direction: "down" }, "slow")
       true
