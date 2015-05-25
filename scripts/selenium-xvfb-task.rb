@@ -26,7 +26,7 @@ else
     
     driver.manage.timeouts.page_load = 120 # seconds 
     driver.manage.timeouts.script_timeout = 30
-    driver.manage.timeouts.implicit_wait = 20
+    driver.manage.timeouts.implicit_wait = 30
     
     filename = "public/archive/snaps/snap_#{snapshot_id}.png"
     
