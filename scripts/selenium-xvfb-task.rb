@@ -3,6 +3,16 @@ require 'selenium-webdriver'
 website = ARGV[0]
 snapshot_id = ARGV[1]
 
+def custom_work(driver, url)
+  subdomain = url.scan(/^(.*:)\/\/([A-Za-z0-9\-\.]+)(:[0-9]+)?(.*)$/)[0][1]
+  domain = subdomain[subdomain.index('.')+1..-1]
+  case domain
+  when "wordpress.com"
+    element = driver.find_element(:xpath, "//*[@id=\"bit\"]")
+    driver.execute_script("arguments[0].style.visibility='hidden'", element)
+  end
+end
+
 if website.nil? || snapshot_id.nil?
   print 1
 else
@@ -43,6 +53,7 @@ else
     #  driver.execute_script("window.scrollTo(0, 0);")
     #}
     wait.until { 
+      custom_work(driver, website)
       5.times {
         driver.execute_script("function scroll() { viewable = 600; step =   Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++)  { window.scrollTo(0, viewable * i); } return true; } return scroll();")
         driver.execute_script("window.scrollTo(0, 0); return true; ")
