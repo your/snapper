@@ -20,14 +20,15 @@ class Snapshot < ActiveRecord::Base
       done = -1
     end
     
-    puts "exit #{$?.exitstatus.class}"
-    puts "done #{done}"
+    Rails.logger.info "exit #{$?.exitstatus.class}"
+    Rails.logger.info "done #{done}"
       
     if done == 1
       path = "public/archive/snaps/snap_#{generated_hash}"
-      script = "pngquant --quality=45-55 #{path}.png ; mv #{path}-fs8.png #{path}.png"
+      #script = "pngquant --quality=45-55 #{path}.png ; mv #{path}-fs8.png #{path}.png"
+      script = "pngnq -n 256 #{path}.png ; mv #{path}-nq8.png #{path}.png"
       p %x[ #{script} ]
-        
+       
       done = $?.exitstatus == 0 ? 1 : -1 # 1 = ok, -1 = errors
       
       if done == 1
@@ -36,7 +37,7 @@ class Snapshot < ActiveRecord::Base
         p %x[ #{script} ]
         
         done = $?.exitstatus == 0 ? 1 : -1 # 1 = ok, -1 = errors
-        
+       
       end
     end
     end_date = Time.now - start_date
