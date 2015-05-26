@@ -8,11 +8,10 @@ def custom_work(driver, url)
   domain = subdomain[subdomain.index('.')+1..-1]
   case domain
   when "wordpress.com"
-    element = driver.find_element(:xpath, "//*[@id=\"bit\"]")
-    driver.execute_script("arguments[0].style.visibility='hidden'", element)
-    driver.execute_script("return true;")
+    #element = driver.find_element(:xpath, "//*[@id=\"bit\"]")
+    #driver.execute_script("arguments[0].style.visibility='hidden'", element)
   else
-    driver.execute_script("window.scrollTo(0, 0); return true;")
+    driver.execute_script("window.scrollTo(0, 0);")
   end
 end
 
@@ -60,6 +59,7 @@ else
         driver.execute_script("function scroll() { viewable = 600; step =   Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++)  { window.scrollTo(0, viewable * i); } return true; } return scroll();")
       }
       custom_work(driver, website)
+      driver.execute_script("return true;")
     }
     
     driver.save_screenshot filename
