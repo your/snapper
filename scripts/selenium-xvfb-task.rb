@@ -56,7 +56,7 @@ else
       custom_work(driver, website)
       5.times {
         driver.execute_script("function scroll() { viewable = 600; step =   Math.ceil(document.body.scrollHeight / viewable); for (i = 0; i <= step ; i++)  { window.scrollTo(0, viewable * i); } return true; } return scroll();")
-        driver.execute_script("window.scrollTo(0, 0); return true; ")
+        #driver.execute_script("window.scrollTo(0, 0); return true; ")
       }
     }
     
