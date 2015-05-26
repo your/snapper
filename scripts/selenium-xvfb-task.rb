@@ -8,7 +8,7 @@ def custom_work(driver, url)
   domain = subdomain[subdomain.index('.')+1..-1]
   case domain
   when "wordpress.com"
-    #element = driver.find_element(:xpath, "//*[@id=\"bit\"]")
+    element = driver.find_element(:xpath, "//*[@id=\"bit\"]")
     #driver.execute_script("arguments[0].style.visibility='hidden'", element)
   else
     driver.execute_script("window.scrollTo(0, 0);")
