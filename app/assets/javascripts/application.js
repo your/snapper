@@ -17,4 +17,3 @@
 //= require_tree .
 //= require jquery.countdown.min
 //= require moment.min
-//= require comments
