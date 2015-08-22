@@ -3,6 +3,7 @@
 require ::File.expand_path('../config/environment', __FILE__)
 run Rails.application
 
+# note: not really needed..
 if Rails.env.production?
   DelayedJobWeb.use Rack::Auth::Basic do |username, password|
     username == 'penn' && password == 'design'
